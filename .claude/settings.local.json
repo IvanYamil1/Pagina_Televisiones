@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(dir:*)",
+      "Bash(npm run build:*)",
+      "Bash(git lfs install:*)",
+      "Bash(git lfs track:*)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git lfs:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

@@ -16,6 +16,19 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Smooth scroll timing */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Scroll margin for anchor links */
+section[id] {
+  scroll-margin-top: 80px;
 }
 
 body {
@@ -269,6 +282,22 @@ img {
   animation: loadingBar 2s ease-out forwards;
 }
 
+/* Letter glow effect - wave style */
+@keyframes letterGlow {
+  0%, 100% {
+    color: rgba(255, 255, 255, 0.3);
+    text-shadow: none;
+  }
+  50% {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.animate-letter-glow {
+  animation: letterGlow 2s ease-in-out infinite;
+}
+
 /* Hide scrollbar for carousel */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -277,4 +306,439 @@ img {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ============================================
+   ENHANCED SECTION ANIMATIONS
+   ============================================ */
+
+/* Reveal from below with blur - SLOW & ELEGANT */
+@keyframes revealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-reveal-up {
+  animation: revealUp 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Reveal from left with subtle rotation - SLOW & ELEGANT */
+@keyframes revealLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) rotate(-1.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(0);
+  }
+}
+
+.animate-reveal-left {
+  animation: revealLeft 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Reveal from right with subtle rotation - SLOW & ELEGANT */
+@keyframes revealRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px) rotate(1.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(0);
+  }
+}
+
+.animate-reveal-right {
+  animation: revealRight 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Zoom reveal - SLOW & ELEGANT */
+@keyframes zoomReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-zoom-reveal {
+  animation: zoomReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Stagger children animation - SLOW & ELEGANT */
+@keyframes staggerFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-stagger-up {
+  animation: staggerFadeUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Glow entrance - SLOW & ELEGANT */
+@keyframes glowEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+  }
+  40% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+.animate-glow-entrance {
+  animation: glowEntrance 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Text reveal line by line - SLOW & ELEGANT */
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(60%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-text-reveal {
+  animation: textReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Clip path reveal from bottom - SLOW & ELEGANT */
+@keyframes clipRevealUp {
+  0% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.animate-clip-reveal {
+  animation: clipRevealUp 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Card 3D tilt entrance - SLOW & ELEGANT */
+@keyframes card3DEntrance {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(5deg) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0) translateY(0);
+  }
+}
+
+.animate-card-3d {
+  animation: card3DEntrance 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Elastic pop - SLOW & ELEGANT */
+@keyframes elasticPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  85% {
+    transform: scale(0.99);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-elastic-pop {
+  animation: elasticPop 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Smooth wave entrance - SLOW & ELEGANT */
+@keyframes waveEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scaleY(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+.animate-wave-entrance {
+  animation: waveEntrance 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Morph blob background */
+@keyframes morphBlob {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+.animate-morph-blob {
+  animation: morphBlob 8s ease-in-out infinite;
+}
+
+/* Gradient flow */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientFlow 4s ease infinite;
+}
+
+/* Line draw animation */
+@keyframes drawLine {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-draw-line {
+  animation: drawLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Typewriter style counter */
+@keyframes counterFlip {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-counter-flip {
+  animation: counterFlip 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Breathing glow for backgrounds */
+@keyframes breathingGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.animate-breathing-glow {
+  animation: breathingGlow 4s ease-in-out infinite;
+}
+
+/* Smooth parallax drift */
+@keyframes parallaxDrift {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(-5px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-15px) translateX(3px);
+  }
+}
+
+.animate-parallax-drift {
+  animation: parallaxDrift 10s ease-in-out infinite;
+}
+
+/* ============================================
+   CIRCUIT ENERGY PULSE ANIMATIONS
+   ============================================ */
+
+/* Energy pulse traveling down - usando top animation */
+@keyframes energyFlowDown {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-energy-down {
+  position: absolute;
+  animation: energyFlowDown 3s linear infinite;
+}
+
+/* Energy pulse traveling up */
+@keyframes energyFlowUp {
+  0% {
+    top: 100%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: -10%;
+    opacity: 0;
+  }
+}
+
+.animate-energy-up {
+  position: absolute;
+  animation: energyFlowUp 4s linear infinite;
+}
+
+/* Energy pulse horizontal left to right */
+@keyframes energyFlowRight {
+  0% {
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-energy-right {
+  position: absolute;
+  animation: energyFlowRight 2.5s linear infinite;
+}
+
+/* Energy pulse horizontal right to left */
+@keyframes energyFlowLeft {
+  0% {
+    right: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    right: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-energy-left {
+  position: absolute;
+  animation: energyFlowLeft 2.5s linear infinite;
+}
+
+/* Node pulse/glow when energy passes */
+@keyframes nodePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.9), 0 0 30px rgba(59, 130, 246, 0.5);
+    transform: scale(1.4);
+  }
+}
+
+.animate-node-pulse {
+  animation: nodePulse 2s ease-in-out infinite;
+}
+
+/* Circuit trace glow */
+@keyframes traceGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+  }
+}
+
+.animate-trace-glow {
+  animation: traceGlow 3s ease-in-out infinite;
 }
