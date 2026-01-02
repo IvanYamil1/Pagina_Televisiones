@@ -439,6 +439,18 @@ export default function Home() {
             loop
             playsInline
             className={`w-full h-full object-cover transition-all duration-[2s] ${heroVisible ? 'opacity-80 scale-100' : 'opacity-0 scale-105'}`}
+            onTimeUpdate={(e) => {
+              const video = e.currentTarget;
+              const fadeTime = 1.5;
+              const timeLeft = video.duration - video.currentTime;
+              if (timeLeft <= fadeTime) {
+                video.style.opacity = String(0.8 * (timeLeft / fadeTime));
+              } else if (video.currentTime <= fadeTime) {
+                video.style.opacity = String(0.8 * (video.currentTime / fadeTime));
+              } else {
+                video.style.opacity = '0.8';
+              }
+            }}
           >
             <source src="/Fondo.mp4" type="video/mp4" />
           </video>
