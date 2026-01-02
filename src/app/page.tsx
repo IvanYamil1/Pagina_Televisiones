@@ -438,18 +438,20 @@ export default function Home() {
             muted
             loop
             playsInline
-            className={`w-full h-full object-cover transition-all duration-[2s] ${heroVisible ? 'opacity-80 scale-100' : 'opacity-0 scale-105'}`}
+            className={`w-full h-full object-cover transition-transform duration-[2s] ${heroVisible ? 'scale-100' : 'scale-105'}`}
+            style={{ opacity: heroVisible ? 0.8 : 0, transition: 'opacity 2s ease' }}
             onTimeUpdate={(e) => {
               const video = e.currentTarget;
-              const fadeTime = 1.5;
+              if (!video.duration) return;
+              const fadeTime = 2.5;
               const timeLeft = video.duration - video.currentTime;
+              let opacity = 0.8;
               if (timeLeft <= fadeTime) {
-                video.style.opacity = String(0.8 * (timeLeft / fadeTime));
+                opacity = 0.8 * (timeLeft / fadeTime);
               } else if (video.currentTime <= fadeTime) {
-                video.style.opacity = String(0.8 * (video.currentTime / fadeTime));
-              } else {
-                video.style.opacity = '0.8';
+                opacity = 0.8 * (video.currentTime / fadeTime);
               }
+              video.style.opacity = String(opacity);
             }}
           >
             <source src="/Fondo.mp4" type="video/mp4" />
