@@ -438,24 +438,34 @@ export default function Home() {
             muted
             loop
             playsInline
-            className={`w-full h-full object-cover transition-transform duration-[2s] ${heroVisible ? 'scale-100' : 'scale-105'}`}
-            style={{ opacity: heroVisible ? 0.8 : 0, transition: 'opacity 2s ease' }}
+            id="hero-video"
+            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] ${heroVisible ? 'scale-100' : 'scale-105'}`}
+            style={{ opacity: heroVisible ? 0.8 : 0 }}
             onTimeUpdate={(e) => {
               const video = e.currentTarget;
-              if (!video.duration) return;
-              const fadeTime = 2.5;
+              const overlay = document.getElementById('video-fade-overlay');
+              if (!video.duration || !overlay) return;
+              const fadeTime = 3;
               const timeLeft = video.duration - video.currentTime;
-              let opacity = 0.8;
               if (timeLeft <= fadeTime) {
-                opacity = 0.8 * (timeLeft / fadeTime);
+                // Fade to black al final
+                overlay.style.opacity = String(1 - (timeLeft / fadeTime));
               } else if (video.currentTime <= fadeTime) {
-                opacity = 0.8 * (video.currentTime / fadeTime);
+                // Fade from black al inicio
+                overlay.style.opacity = String(1 - (video.currentTime / fadeTime));
+              } else {
+                overlay.style.opacity = '0';
               }
-              video.style.opacity = String(opacity);
             }}
           >
             <source src="/Fondo.mp4" type="video/mp4" />
           </video>
+          {/* Overlay para fade to black */}
+          <div
+            id="video-fade-overlay"
+            className="absolute inset-0 bg-[#030712] pointer-events-none transition-opacity duration-300"
+            style={{ opacity: 0 }}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/70 via-[#030712]/50 to-[#030712]"></div>
           <div className="absolute inset-0 bg-blue-950/5"></div>
         </div>
